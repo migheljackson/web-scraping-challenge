@@ -16,13 +16,43 @@
       <p>Mars data compiled from various sources.  Hit the button below to grab the latest information.</p>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">What's New?</a></p>
     </div>
-    <h2 class="text-center">Latest Mars News for {{ mars_docs.newest_article_date }}</h2>
-    <h3>Max Temp: {{ mars_docs.newest_article_date }}</h3>
-    <h3>Min Temp: {{ mars_docs.newest_article_title }}</h3>
-    <img src="{{ mars_docs.space_featured_img }}" alt="Space">
     
+    <h2 class="text-center">Latest Mars News for {{ mars_docs.newest_article_date }}</h2>
+    <h3><strong>{{ mars_docs.newest_article_title }}</strong></h3>
+    <h4><em>{{ mars_docs.newest_article_blurb }}</em></h4>
+    
+    
+    <div class="container">
+      <div class="row">
+          <div class="col-xs-4">
+            <img src="{{ mars_docs.space_featured_img }}" alt="Space">
+          </div>
+          <div class="col-xs-4">
+            
+          </div>
+          <div class="col-xs-4">
+            <h4 class="text-center">Mars Facts</h4> {{ mars_docs.mars_data_table|safe }}
+          </div>
+      </div>
+    
+     <div class="row">
+      {% for dict_item in mars_docs.hemisphere_image_urls %}
+       <div class="col-xs-2">
+        <div class="card" style="width: 100px;">
+        <img class="card-img-top" src="{{ dict_item['img_url'] }}" alt="{{ dict_item['title'] }}">
+        <div class="card-body">
+          <h4 class="card-title">{{ dict_item['title'] }}</h4>
+        </div>
+      </div>
+   {% endfor %}
+  </div> 
+  </div> 
   </div>
-  </div>
+
+  
+</div>
+
+  
 </body>
 
 </html>

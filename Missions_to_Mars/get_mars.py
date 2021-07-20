@@ -34,7 +34,7 @@ def scrape():
     mars_scrape_data = scrape_mars.scrape()
 
     # Update the Mongo database using update and upsert=True
-    db.mars_mission.update_one({}, mars_scrape_data, upsert=True)
+    db.mars_mission.replace_one({}, mars_scrape_data, upsert=True)
 
     # Redirect back to home page
     return redirect("/")

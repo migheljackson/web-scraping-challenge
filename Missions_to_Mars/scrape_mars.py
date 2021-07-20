@@ -66,7 +66,7 @@ def scrape():
         html = driver.page_source
         soup = BeautifulSoup(html, "html.parser")
         hemi_image=soup.find('img',class_="wide-image").get('src')
-        hemi_image_url=f'{mars_image_url}{hemi_image}'
+        hemi_image_url=f'{mars_image_url}/{hemi_image}'
         hemi_title=soup.find('h2',class_="title").text
         hemi_dict={"title":hemi_title,"img_url":hemi_image_url}
         hemisphere_image_urls.append(hemi_dict)
