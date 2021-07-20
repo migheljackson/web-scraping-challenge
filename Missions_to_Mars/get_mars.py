@@ -1,7 +1,7 @@
 # import necessary libraries
 import requests
 import pymongo
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 import scrape_mars
 
 #Create a Flask instance
@@ -18,13 +18,12 @@ mars_docs = db.mars_mission.find_one()
 @app.route("/")
 def home():
 
-    # Find one record of data from the mongo database
-    #destination_data = mongo.db.collection.find_one()
-
-    print('\n returned records:',len(mars_docs),'\n full record:',mars_docs)
+    #Debug
+    print("Server received request for 'Home' page...")
+    print('\n returned records:\n',mars_docs)
 
     # Return template and data
-    #return render_template("index.html", vacation=destination_data)
+    return render_template("index.html", mars_docs=mars_docs)
 
 
 # Route that will trigger the scrape function
@@ -35,7 +34,7 @@ def scrape():
     mars_scrape_data = scrape_mars.scrape()
 
     # Update the Mongo database using update and upsert=True
-    db.mars_mission.update({}, mars_scrape_data, upsert=True)
+    db.mars_mission.update_one({}, mars_scrape_data, upsert=True)
 
     # Redirect back to home page
     return redirect("/")
