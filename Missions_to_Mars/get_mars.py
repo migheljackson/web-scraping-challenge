@@ -1,4 +1,5 @@
 # import necessary libraries
+from os import sep
 import requests
 import pymongo
 from flask import Flask, render_template, redirect
@@ -19,7 +20,8 @@ def home():
     mars_docs = db.mars_mission.find_one()
     #Debug
     print("Server received request for 'Home' page...")
-    print('\n returned records:\n',mars_docs)
+    [print(key,':\n',value) for key,value in mars_docs.items()]
+    print("Site updated successfully")
 
     # Return template and data
     return render_template("index.html", mars_docs = mars_docs)
