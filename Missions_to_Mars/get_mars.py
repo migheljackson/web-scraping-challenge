@@ -12,18 +12,17 @@ conn = 'mongodb+srv://admin:admin@cluster0.5lstl.mongodb.net/myFirstDatabase?ret
 client = pymongo.MongoClient(conn)
 db = client.dr_claw
 collection = db.mars_mission
-mars_docs = db.mars_mission.find_one()
 
 # Route to render index.html template using data from Mongo
 @app.route("/")
 def home():
-
+    mars_docs = db.mars_mission.find_one()
     #Debug
     print("Server received request for 'Home' page...")
     print('\n returned records:\n',mars_docs)
 
     # Return template and data
-    return render_template("index.html", mars_docs=mars_docs)
+    return render_template("index.html", mars_docs = mars_docs)
 
 
 # Route that will trigger the scrape function

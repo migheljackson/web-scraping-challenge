@@ -71,15 +71,15 @@ def scrape():
         hemi_dict={"title":hemi_title,"img_url":hemi_image_url}
         hemisphere_image_urls.append(hemi_dict)
 
-    #Store data in a dictionary
-    mars_scrape_data= {
+        #Store data in a dictionary
+        mars_scrape_data= {
         "newest_article_date":newest_date,
         "newest_article_title":newest_title,
         "newest_article_blurb":newest_blurb,
         "space_featured_img":featured_image_url,
         "mars_data_table":mars_html_table,
         "hemisphere_image_urls":hemisphere_image_urls
-    }
+        }
 
 
     driver.quit()
