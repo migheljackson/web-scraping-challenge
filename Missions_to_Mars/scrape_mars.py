@@ -22,7 +22,7 @@ def scrape():
     #Get newest article
     driver.get(news_url)
     
-    time.sleep(5)
+    time.sleep(1)
     
     html = driver.page_source
     soup = BeautifulSoup(html,"html.parser")
