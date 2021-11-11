@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 import pymongo
 import pandas as pd
@@ -17,7 +18,7 @@ def scrape():
 
 
     # initiating the webdriver. Parameter includes the path of the webdriver.
-    driver = webdriver.Chrome('chromedriver.exe') 
+    driver = webdriver.Chrome(ChromeDriverManager().install()) 
     
     #Get newest article
     driver.get(news_url)
